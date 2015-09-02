@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <ctype.h>
+
+struct moja_niska {
+  char niska[50];
+  int br_samoglasnika;
+  int br_suglasnika;
+};
+
+void prebroj(struct moja_niska string);
+
+int main() {
+  struct moja_niska string;
+  
+  printf("Unesite rec od maksimum 50 karaktera: ");
+
+  while(fgets(string.niska, 50, stdin) != NULL)
+    prebroj(string);
+  
+return 0;
+}
+
+void prebroj(struct moja_niska string) {
+  int i;
+  char *niska = string.niska;
+  string.br_samoglasnika = 0;
+  string.br_suglasnika = 0;
+  
+  for(i = 0; niska[i] != '\0'; i++) {
+    if(isalpha(niska[i])) {
+      if(niska[i] == 'a' || niska[i] == 'e' || niska[i] == 'i' || niska[i] == 'o' || niska[i] == 'u')
+	string.br_samoglasnika++;
+      else
+	string.br_suglasnika++;
+    }
+  }  
+printf("Broj samoglasnika = %d\nBroj suglasnika = %d\n", string.br_samoglasnika, string.br_suglasnika); 
+}
